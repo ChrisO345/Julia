@@ -32,7 +32,8 @@ end
 
 function print_directory()
     outputs = "\n## TheAlgorithms\n"
-    files, dirs = get_list_files("..\\src")
+    println(pwd())
+    files, dirs = get_list_files("src")
     println(files)
     println(dirs)
     for i = eachindex(dirs)
