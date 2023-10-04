@@ -35,7 +35,9 @@ jobs:
         with:
           version: 1.8
       - name: Build DIRECTORY.md
-        run: julia scripts/directory_writer.jl | tee DIRECTORY.md
+        run: |
+          julia scripts/directory_writer.jl
+          tee DIRECTORY.md
       - name: Update DIRECTORY.md
         run: |
           git config --global user.name github-actions
