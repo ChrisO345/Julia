@@ -1,6 +1,6 @@
 name: Directory writer
-on: [push]
-  # schedule:
+on:
+  schedule:
   #        ┌───────────── minute (0 - 59)
   #        │  ┌───────────── hour (0 - 23)
   #        │  │ ┌───────────── day of the month (1 - 31)
@@ -10,8 +10,8 @@ on: [push]
   #        │  │ │ │ │
   #        │  │ │ │ │
   #        *  * * * *
-  # - cron: '0 0 * * *'
-  # workflow_dispatch:
+   - cron: '40 15 * * *'
+  workflow_dispatch:
 jobs:
   build:
     # if: github.repository == 'TheAlgorithms/Julia' # We only need this to run in our repository.
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - name: Build directory
       - uses: julia-actions/setup-julia@v1
         with:
           version: 1.8
