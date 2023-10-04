@@ -1,3 +1,5 @@
+Any[]
+String[]
 
 ## TheAlgorithms
 
