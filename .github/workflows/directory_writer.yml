@@ -37,9 +37,6 @@ jobs:
       - name: Build DIRECTORY.md
         run: |
           julia scripts/directory_writer.jl
-          tee DIRECTORY.md
-      - name: Update DIRECTORY.md
-        run: |
           git config --global user.name github-actions
           git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
