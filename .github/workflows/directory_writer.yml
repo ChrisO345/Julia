@@ -30,9 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Get Julia
+      - name: Get Julia v1.8
         uses: julia-actions/setup-julia@v1
         with:
           version: 1.8
-      - name: Build directory
+      - name: Build DIRECTORY.md
         run: julia scripts/directory_writer.jl
+      - name: Update DIRECTORY.md
+        run: |
+          git add DIRECTORY.md
+          git commit -am "updating DIRECTORY.md" ||  true
+          git push --force origin HEAD:$GITHUB_REF || true

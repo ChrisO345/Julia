@@ -1,19 +1,16 @@
-URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD"
+URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD/src"
 
 function get_list_files(path, extension=".jl")
     list_files = []
-    dir_names = []
+    dir_names = String[]
     for (root, dirs, files) in walkdir(path)
         current_dir = String[]
-        for d in dirs
-            # Don't Need??
-            if d == "scripts" && d[0] == '.'
-                continue
-            end
-            push!(dir_names, d)
+        strip_root = replace(root, "..\\src\\" => "")
+        if strip_root != "..\\src"
+            push!(dir_names, strip_root)
         end
         for file in files
-            if file == "directory_writer.jl"
+            if file == "TheAlgorithms.jl"
                 continue
             end
             if endswith(file, extension)
@@ -27,17 +24,30 @@ function get_list_files(path, extension=".jl")
     return list_files, dir_names
 end
 
+function title(words)
+    words = split(replace(lowercase(words), " " => "_"), "_")
+    titled_words = [uppercasefirst(word) for word in words]
+    return join(titled_words, " ")
+end
+
 function print_directory()
-    outputs = "## TheAlgorithms\n"
-    files, dirs = get_list_files("../src/")
+    outputs = "\n## TheAlgorithms\n"
+    files, dirs = get_list_files("..\\src")
     for i = eachindex(dirs)
-        outputs *= "  * $(uppercasefirst(dirs[i]))\n"
+        factor = 1
+        if contains(dirs[i], "\\")
+            dir = split(dirs[i], "\\")[2]
+            factor = 2
+        else
+            dir = dirs[i]
+        end
+        outputs *= "  " ^ factor * "* $(title(dir))\n"
         for j in files[i]
-            outputs *= "    * [$j]($URL_BASE/$(dirs[i])/$(replace(j, " " => "%20")).jl)\n"
+            outputs *= "  " ^ factor * "  * [$(title(j))]($URL_BASE/$(replace(dirs[i], "\\" => "/"))/$(replace(j, " " => "%20")).jl)\n"
         end
     end
-    println(outputs)
-    open("DIRECTORY.md", "w") do f
+    # println(outputs)
+    open("..\\DIRECTORY.md", "w") do f
         write(f, outputs)
     end
 end
