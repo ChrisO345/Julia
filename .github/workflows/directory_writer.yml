@@ -1,5 +1,5 @@
 name: Directory writer
-on: [pull_request]
+on: [push]
   #schedule:
   #        ┌───────────── minute (0 - 59)
   #        │  ┌───────────── hour (0 - 23)
@@ -43,4 +43,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git add DIRECTORY.md
           git commit -am "updating DIRECTORY.md" ||  true
-          git push --force origin $GITHUB_REF || true
+          git push --force origin HEAD:$GITHUB_REF || true
