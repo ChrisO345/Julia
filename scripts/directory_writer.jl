@@ -46,7 +46,7 @@ function print_directory()
             outputs *= "  " ^ factor * "  * [$(title(j))]($URL_BASE/$(replace(dirs[i], "\\" => "/"))/$(replace(j, " " => "%20")).jl)\n"
         end
     end
-    # println(outputs)
+    println(outputs)
     open("..\\DIRECTORY.md", "w") do f
         write(f, outputs)
     end
