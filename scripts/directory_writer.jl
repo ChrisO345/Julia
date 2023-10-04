@@ -5,8 +5,8 @@ function get_list_files(path, extension=".jl")
     dir_names = String[]
     for (root, dirs, files) in walkdir(path)
         current_dir = String[]
-        strip_root = replace(root, "..\\src\\" => "")
-        if strip_root != "..\\src"
+        strip_root = replace(root, "src\\" => "")
+        if strip_root != "src"
             push!(dir_names, strip_root)
         end
         for file in files
@@ -32,10 +32,7 @@ end
 
 function print_directory()
     outputs = "\n## TheAlgorithms\n"
-    println(pwd())
     files, dirs = get_list_files("src")
-    println(files)
-    println(dirs)
     for i = eachindex(dirs)
         factor = 1
         if contains(dirs[i], "\\")
@@ -50,9 +47,9 @@ function print_directory()
         end
     end
     println(outputs)
-    open("..\\DIRECTORY.md", "w") do f
-        write(f, outputs)
-    end
+    #open("..\\DIRECTORY.md", "w") do f
+    #    write(f, outputs)
+    #end
 end
 
 print_directory()
