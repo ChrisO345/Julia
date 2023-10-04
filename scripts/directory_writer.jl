@@ -36,8 +36,9 @@ function print_directory()
     for i = eachindex(dirs)
         factor = 1
         if contains(dirs[i], "/")
-            dir = split(dirs[i], "/")[2]
-            factor = 2
+            dir = split(dirs[i], "/")
+            factor = length(dir)
+            dir = dir[end]
         else
             dir = dirs[i]
         end
@@ -47,9 +48,6 @@ function print_directory()
         end
     end
     println(outputs)
-    #open("..\\DIRECTORY.md", "w") do f
-    #    write(f, outputs)
-    #end
 end
 
 print_directory()
