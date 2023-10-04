@@ -155,4 +155,6 @@
     * [Pangram](https://github.com/TheAlgorithms/Julia/blob/HEAD/src/strings/pangram.jl)
     * [Rabin Karp](https://github.com/TheAlgorithms/Julia/blob/HEAD/src/strings/rabin_karp.jl)
     * [Word Count](https://github.com/TheAlgorithms/Julia/blob/HEAD/src/strings/word_count.jl)
+  * Testing
+    * [Pr2](https://github.com/TheAlgorithms/Julia/blob/HEAD/src/testing/pr2.jl)
 
