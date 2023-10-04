@@ -10,7 +10,7 @@ on:
   #        │  │ │ │ │
   #        │  │ │ │ │
   #        *  * * * *
-   - cron: '40 15 * * *'
+  - cron: '0 0 * * *'
   workflow_dispatch:
 jobs:
   build:
@@ -28,9 +28,8 @@ jobs:
     #      filetypes: jl
     #      ignored-directories: docs/,pluto_notebooks/,test/
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build directory
       - uses: julia-actions/setup-julia@v1
         with:
