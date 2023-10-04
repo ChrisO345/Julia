@@ -33,6 +33,8 @@ end
 function print_directory()
     outputs = "\n## TheAlgorithms\n"
     files, dirs = get_list_files("..\\src")
+    println(files)
+    println(dirs)
     for i = eachindex(dirs)
         factor = 1
         if contains(dirs[i], "\\")
