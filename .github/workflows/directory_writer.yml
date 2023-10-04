@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build directory
-      - uses: julia-actions/setup-julia@v1
+      - name: Get Julia
+        uses: julia-actions/setup-julia@v1
         with:
           version: 1.8
-
-      - run: julia scripts/directory_writer.jl
+      - name: Build directory
+        run: julia scripts/directory_writer.jl
