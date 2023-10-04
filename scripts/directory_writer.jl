@@ -1,4 +1,4 @@
-URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD"
+URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD/src"
 
 function get_list_files(path, extension=".jl")
     list_files = []
