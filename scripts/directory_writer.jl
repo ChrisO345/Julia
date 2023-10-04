@@ -1,11 +1,11 @@
-URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD/src"
+URL_BASE = "https://github.com/TheAlgorithms/Julia/blob/HEAD"
 
 function get_list_files(path, extension=".jl")
     list_files = []
     dir_names = String[]
     for (root, dirs, files) in walkdir(path)
         current_dir = String[]
-        strip_root = replace(root, "src\\" => "")
+        strip_root = replace(root, "src/" => "")
         if strip_root != "src"
             push!(dir_names, strip_root)
         end
@@ -35,15 +35,15 @@ function print_directory()
     files, dirs = get_list_files("src")
     for i = eachindex(dirs)
         factor = 1
-        if contains(dirs[i], "\\")
-            dir = split(dirs[i], "\\")[2]
+        if contains(dirs[i], "/")
+            dir = split(dirs[i], "/")[2]
             factor = 2
         else
             dir = dirs[i]
         end
         outputs *= "  " ^ factor * "* $(title(dir))\n"
         for j in files[i]
-            outputs *= "  " ^ factor * "  * [$(title(j))]($URL_BASE/$(replace(dirs[i], "\\" => "/"))/$(replace(j, " " => "%20")).jl)\n"
+            outputs *= "  " ^ factor * "  * [$(title(j))]($URL_BASE/$(dirs[i])/$(replace(j, " " => "%20")).jl)\n"
         end
     end
     println(outputs)
